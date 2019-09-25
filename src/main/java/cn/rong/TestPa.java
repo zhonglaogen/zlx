@@ -1,5 +1,6 @@
 package cn.rong;
 
+import cn.rong.entity.Title;
 import org.junit.Test;
 
 import java.io.BufferedReader;
@@ -9,7 +10,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -154,7 +157,24 @@ public class TestPa {
         if (text.contains("、") && text.contains("审核的发行人：")) {
             System.out.println("yes");
         }
-//
+//        List<Title> t=new ArrayList<>();
+//        Title tt=new Title();
+//        tt.setIndexNum("1");
+//        t.add(tt);
+//        tt.setIndexNum("2");
+//        t.add(tt);
+//        System.out.println(t.get(0).toString());
+
+        List<byte[]> list=new ArrayList<>();
+        byte[] a=new byte[]{1,2,3,45};
+        list.add(a);
+        a[1]=99;
+        list.add(a);
+        System.out.println(list.get(0)==list.get(1));
+
+////
+
+
 
 
     }

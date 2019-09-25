@@ -6,20 +6,31 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Test1 {
+public class FileSpilt {
 
-    public static void splitAndMerageFile(String opath, String npath) {
+    public static List<byte[]> splitAndMerageFile(String opath, String npath) {
         RandomAccessFile orw = null;
         RandomAccessFile nrw = null;
+        List<byte[]> blocks = new ArrayList<>();
         try {
             orw = new RandomAccessFile(new File(opath), "rw");
             nrw = new RandomAccessFile(new File(npath), "rw");
             //20份每份5M
             byte[] split = new byte[1024 * 1024 * 5];
+            //读取的字节数
             int len = 0;
             while ((len = orw.read(split)) != -1) {
-                nrw.write(split,0,len);
+
+                //浅拷贝，错误！！
+//                blocks.add(split);
+                blocks.add(copyByte(split));
+
+            }
+            for (byte[] bytes : blocks) {
+                nrw.write(bytes);
             }
 
         } catch (FileNotFoundException e) {
@@ -38,7 +49,22 @@ public class Test1 {
                 e.printStackTrace();
             }
         }
+        return blocks;
 
+    }
+
+    /**
+     * 深拷贝数组
+     * @param bytes1
+     * @return
+     */
+    private static byte[] copyByte(byte[] bytes1) {
+        int len = bytes1.length;
+        byte[] bytes2 = new byte[len];
+        for (int i = 0; i < len; i++) {
+            bytes2[i] = bytes1[i];
+        }
+        return bytes2;
     }
 
     public static boolean checkBySha1(String opath, String npath) {
@@ -57,7 +83,6 @@ public class Test1 {
             orw.read(oldfile);
 
 
-
             nrw = new RandomAccessFile(new File(npath), "rw");
             nrw.read(newfile);
 
@@ -73,13 +98,13 @@ public class Test1 {
             sha.update(newfile);
             byte[] newDigest = sha.digest();
 
-            System.out.println(newfile.length);
-            System.out.println(newDigest.length);
+
+            System.out.println("sha1加密的字节数：" + newDigest.length);
             //进行比对
 
-            int len=oldDigest.length;
+            int len = oldDigest.length;
             for (int i = 0; i < len; i++) {
-                if(oldDigest[i]!=newDigest[i]){
+                if (oldDigest[i] != newDigest[i]) {
                     return false;
                 }
             }
@@ -93,14 +118,16 @@ public class Test1 {
         return true;
     }
 
-    public static void createFile() {
+    public static void createFile(String fileName) {
         try {
-            RandomAccessFile rw = new RandomAccessFile(new File("/home/zhonglianxi/111111/file1"), "rw");
+            RandomAccessFile rw = new RandomAccessFile(new File(fileName), "rw");
             byte[] content = new byte[1024 * 1024 * 100];
             for (int i = 0; i < 1024 * 1024 * 100; i++) {
-                content[i] = 1;
+                    content[i] = (byte) (i%100);
+
             }
             rw.write(content);
+            System.out.println("创建文件的大小：" + rw.length() / (1024 * 1024) + "mb");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -111,12 +138,13 @@ public class Test1 {
 
     public static void main(String[] args) {
         //创建100m文件
-        createFile();
+        createFile("/home/zhonglianxi/111111/f1");
         //进行切分和创建新文件
-        splitAndMerageFile("/home/zhonglianxi/111111/file1","/home/zhonglianxi/111111/file2");
+        List<byte[]> blocks = splitAndMerageFile("/home/zhonglianxi/111111/f1", "/home/zhonglianxi/111111/f1x");
+        System.out.println("文件分割的块数目：" + blocks.size());
         //sha1加密检查是否一致
-        boolean b = checkBySha1("/home/zhonglianxi/111111/file1", "/home/zhonglianxi/111111/file1");
-        System.out.println(b);
+        boolean b = checkBySha1("/home/zhonglianxi/111111/f1", "/home/zhonglianxi/111111/f1x");
+        System.out.println("比对结果为：" + b);
 
     }
 

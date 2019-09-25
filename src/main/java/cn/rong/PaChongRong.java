@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
  * indexof!=-1 and contains
  */
 public class PaChongRong {
-    public static String URL_RONG = "http://www.csrc.gov.cn/pub/zjhpublic/G00306202/201712/t20171229_330048.htm?keywords";
+    public static final String URL_RONG = "http://www.csrc.gov.cn/pub/zjhpublic/G00306202/201712/t20171229_330048.htm?keywords";
 
 
     public static void getMessage() throws IOException, IllegalAccessException {
@@ -64,7 +64,7 @@ public class PaChongRong {
             titFields[n].set(tt, e.getValue());
             n++;
         }
-//        System.out.println(tt.toString());
+        System.out.println(tt.toString());
 
 
         //爬内容

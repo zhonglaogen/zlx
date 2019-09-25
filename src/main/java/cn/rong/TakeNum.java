@@ -30,7 +30,8 @@ public class TakeNum {
     }
 
     /**
-     * 并发修改
+     * 强一致性修改,要获取size来随机拿出其中的某个元素
+     * 如果要并行修改，就要提前生成所有随机index,
      *
      * @param l1
      * @param l2

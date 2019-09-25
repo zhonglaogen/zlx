@@ -1,4 +1,4 @@
-package cn.rong.entity;
+package com.zlx.pachong.entity;
 
 public class Title {
 
@@ -7,7 +7,7 @@ public class Title {
     private String sort;
     private String publishOrgan;
     private String publishDate;
-    private String name;
+    private String titleName;
     private String symbol;
     private Integer subjectWordId;
 
@@ -52,12 +52,12 @@ public class Title {
         this.publishDate = publishDate;
     }
 
-    public String getName() {
-        return name;
+    public String getTitleName() {
+        return titleName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitleName(String titleName) {
+        this.titleName = titleName;
     }
 
     public String getSymbol() {
@@ -84,7 +84,7 @@ public class Title {
                 ", sort='" + sort + '\'' +
                 ", publishOrgan='" + publishOrgan + '\'' +
                 ", publishDate='" + publishDate + '\'' +
-                ", name='" + name + '\'' +
+                ", titleName='" + titleName + '\'' +
                 ", symbol='" + symbol + '\'' +
                 ", subjectWordId=" + subjectWordId +
                 '}';

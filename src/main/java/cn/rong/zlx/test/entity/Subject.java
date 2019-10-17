@@ -1,4 +1,4 @@
-package cn.rong.entity;
+package cn.rong.zlx.test.entity;
 
 public class Subject {
 

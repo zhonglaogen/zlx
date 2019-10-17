@@ -1,23 +1,19 @@
-package cn.rong;
+package cn.rong.zlx.test;
 
-import cn.rong.entity.Subject;
-import cn.rong.entity.Title;
-import com.sun.jndi.toolkit.url.Uri;
+import cn.rong.zlx.test.entity.Title;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import javax.security.auth.Subject;
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * indexof!=-1 and contains

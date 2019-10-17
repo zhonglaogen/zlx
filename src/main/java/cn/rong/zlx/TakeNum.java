@@ -1,4 +1,4 @@
-package cn.rong;
+package cn.rong.zlx;
 
 import org.junit.Test;
 

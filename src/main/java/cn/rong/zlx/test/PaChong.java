@@ -1,4 +1,4 @@
-package cn.rong;
+package cn.rong.zlx.test;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -10,12 +10,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.UUID;
 
 /**
- * 爬古力娜扎
+ * 爬图
  */
 public class PaChong {
     private static String URL1 = "http://www.win4000.com/mt/gulinazha";

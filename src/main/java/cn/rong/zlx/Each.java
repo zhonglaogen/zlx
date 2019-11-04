@@ -1,6 +1,8 @@
 package cn.rong.zlx;
 
 import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import java.util.*;
 import java.util.function.BiConsumer;
@@ -22,6 +24,10 @@ public class Each {
         for (String s:s1){
 
         }
+//        Document document = Jsoup.parse(doc.outerHtml());
+      assert 1==2:"ok";
+
+
 
 
     }
@@ -93,6 +99,10 @@ public class Each {
     private static void list4() {
         Integer[] arry = {1, 2, 3, 4, 5, 6, 7, 8, 9};
         List<Integer> l1 = new ArrayList<>(Arrays.asList(arry));
+        l1.forEach(term->{
+
+
+        });
         Iterator<Integer> iterator = l1.iterator();
         while (iterator.hasNext()){
             System.out.println(iterator.next());

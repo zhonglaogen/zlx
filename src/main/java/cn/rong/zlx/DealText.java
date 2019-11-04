@@ -15,11 +15,11 @@ import java.util.regex.Pattern;
 
 public class DealText {
     public static void main(String[] args) {
-//        merage();
+        merage();
 //        splitTime();
 
 
-        dirSplit();
+//        dirSplit();
 
 
 
@@ -150,7 +150,7 @@ public class DealText {
         String key = "利润";
         //标记第二个数组的位置
         int index = -1;
-        List<String> l2 = new CopyOnWriteArrayList<>();
+        List<String> l2 = new ArrayList<>();
 
         for (int i = 0; i < l1.size(); i++) {
             if (l1.get(i).equals(key)) {
